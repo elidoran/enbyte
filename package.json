@@ -1,13 +1,12 @@
 {
   "name": "enbyte",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Efficiently encode objects, arrays, strings into binary data.",
   "main": "lib/index.js",
   "files": [
     "lib/index.js"
   ],
-  "keywords": [
-  ],
+  "keywords": [],
   "author": "Eli Doran <eli+npm@elidoran.com>",
   "license": "MIT",
   "scripts": {
