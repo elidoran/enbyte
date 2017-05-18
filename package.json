@@ -20,7 +20,7 @@
     "precoverage": "npm run clean",
     "coverage": "istanbul cover -x 'build/**' -x 'examples/**' _mocha -- --compilers coffee:coffee-script/register --require ./build/coverage.js -R spec test/lib",
     "precoverage-lcov": "npm run clean",
-    "coverage-lcov": "istanbul cover -x 'build/** -x 'examples/**' _mocha --report lcovonly -- --compilers coffee:coffee-script/register --require ./build/coverage.js -R spec test/lib"
+    "coverage-lcov": "istanbul cover -x 'build/**' -x 'examples/**' _mocha --report lcovonly -- --compilers coffee:coffee-script/register --require ./build/coverage.js -R spec test/lib"
   },
   "repository": {
     "type": "git",
