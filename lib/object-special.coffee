@@ -14,7 +14,21 @@ module.exports = exports = (spec, object, output) ->
   if spec.id < @B.SPECIAL then output.marker spec.id
 
   # send it to int()
-  else @int spec.id, output
+  else
+    output.markerUnlessPreviousWas @B.SPECIAL, @B.SPECIAL
+    # problem. if endeo consumes B.SPECIAL above for abbreviated indicator,
+    # then outputting an extended length ID won't work.
+    # an extended ID *must* be preceded by B.SPECIAL.
+    # so, for now, say output B.SPECIAL unless we already did.
+    # this basically makes it:
+    #   send it unless endeo said not to,
+    #   but send it anyway if we have an extended ID,
+    #   unless we already did actually send it cuz endeo didn't say not to.
+    # :-/
+    # yes, I *could* have it always output B.SPECIAL.
+    # I started with the whole "indicator byte" idea, from the beginning,
+    # which differs from "specifier byte".
+    @int spec.id, output
 
   # TODO:
   # check how slow this could be.
