@@ -271,6 +271,25 @@ describe 'test enbyte', ->
           B.SPECIAL, B.P1, 200, B.DEFAULT, B.SUB_TERMINATOR
         ]
 
+  it 'should encode via special with multi-byte ID despite consumeMarkerIf', ->
+
+    encodeTest
+      value: (enbyte, output) ->
+        object =
+          a: 1
+          $ENDEO_SPECIAL:
+            id: 301
+            array: [ { key: 'a', default:1 } ]
+        output.consumeMarkerIf B.SPECIAL
+        enbyte.object object, output
+
+      valid: (buffer) ->
+        assert.deepEqual buffer, Buffer.from [
+          # indicator, specifier, end-of-object
+          B.SPECIAL, B.P1, 200, B.DEFAULT, B.SUB_TERMINATOR
+        ]
+
+
   it 'should encode via special and receive an error', ->
 
     called = false
